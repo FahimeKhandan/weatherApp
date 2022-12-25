@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Weather</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/css/bootstrap.min.css"
+          integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+    <link rel="stylesheet" href="src/style.css">
+    <script src="https://kit.fontawesome.com/f95d2014b8.js" crossorigin="anonymous"></script>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <form>
+            <div class="input-group">
+                <input
+                        type="text"
+                        class="form-control"
+                        placeholder="Other location..."
+                        id="search-box"
+                />
+                <span class="input-group-btn">
+                    <button class="btn btn-default" type="submit">
+                      <i class="fa-solid fa-magnifying-glass"></i>
+                    </button>
+                  </span> 
+                  <span class="input-group-btn">
+                    <a href="#" class="btn btn-default ml-2" id="current-location">
+                      Current Location
+                    </a>
+                  </span>
+            </div>
+        </form>
+        <!-- /input-group -->
+    
+        <section>
+            <div class="today-main-box">
+                <div class="icon">
+                    <img
+                            src="https://www.freeiconspng.com/uploads/wolf-icon-blue-moon-28.png"
+                            width="120"
+                            alt="Weather Icon"
+                    />
+                </div>
+                <div class="desc-2" id="current-city">london</div>
+                <h3>
+                    <span id="current-temperature">19</span>
+                    <sup>
+                        <a href="#" id="celicious">°C</a>
+                        |
+                        <a href="#" id="fahrenheit">°F</a>
+                    </sup>
+                </h3>
+                <div class="desc-2">
+                    <span id="today">sunday </span>
+                    <span id="time">15:00</span>
+                </div>
+                <div class="desc-2" id="temp-description">clear</div>
+            </div>
+        </section>
+    
+        <section class="today-details">
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">30°</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">high</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">7mph</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">wind</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">05:00</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">sunrise</div>
+                    </div>
+                </div>
+            </div>
+            <div class="w-100"></div>
+            <div class="row">
+                <div class="col">
+                    <div class="row">
+                        <div class="col">12°</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">low</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">0%</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">rain</div>
+                    </div>
+                </div>
+                <div class="col">
+                    <div class="row">
+                        <div class="col">15:27</div>
+                    </div>
+                    <div class="row">
+                        <div class="col sub-text">sunset</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    
+        <section class="forecast">
+            <div class="days-info">
+                <div class="days-box">
+                    <div class="desc-2">mon</div>
+                    <div class="icon">
+                        <img
+                                src="https://www.freeiconspng.com/uploads/weather-icon-png-16.png"
+                                width="50"
+                                alt="Weather Save Png"
+                        />
+                    </div>
+                    <div class="desc-2">-23/23°</div>
+                </div>
+            </div>
+            <div class="days-info">
+                <div class="days-box">
+                    <div class="desc-2">tue</div>
+                    <div class="icon">
+                        <img
+                                src="https://www.freeiconspng.com/uploads/weather-icon-png-16.png"
+                                width="50"
+                                alt="Weather Save Png"
+                        />
+                    </div>
+                    <div class="desc-2">-23/23°</div>
+                </div>
+            </div>
+            <div class="days-info">
+                <div class="days-box">
+                    <div class="desc-2">wen</div>
+                    <div class="icon">
+                        <img
+                                src="https://www.freeiconspng.com/uploads/weather-icon-png-16.png"
+                                width="50"
+                                alt="Weather Save Png"
+                        />
+                    </div>
+                    <div class="desc-2">-23/23°</div>
+                </div>
+            </div>
+            <div class="days-info">
+                <div class="days-box">
+                    <div class="desc-2">thur</div>
+                    <div class="icon">
+                        <img
+                                src="https://www.freeiconspng.com/uploads/weather-icon-png-16.png"
+                                width="50"
+                                alt="Weather Save Png"
+                        />
+                    </div>
+                    <div class="desc-2">-23/23°</div>
+                </div>
+            </div>
+            <div class="days-info">
+                <div class="days-box">
+                    <div class="desc-2">fri</div>
+                    <div class="icon">
+                        <img
+                                src="https://www.freeiconspng.com/uploads/weather-icon-png-16.png"
+                                width="50"
+                                alt="Weather Save Png"
+                        />
+                    </div>
+                    <div class="desc-2">-23/23°</div>
+                </div>
+            </div>
+        </section>
+    </div>
+<script src="src/index.js"></script>
+
+</body>
+</html>
