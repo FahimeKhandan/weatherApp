@@ -4,6 +4,9 @@ let fahrenheit = document.querySelector("#fahrenheit");
 let currentTemperature = document.querySelector("#current-temperature");
 let weatherDescription = document.querySelector("#temp-description");
 let currentLocation = document.querySelector("#current-location");
+let currentIcon = document.querySelector('#current-icon')
+let responseObj
+let celiciousTemperature
 
 let days = [
   "Sunday",
@@ -34,9 +37,10 @@ let currentCity = document.querySelector("#current-city");
 
 function changeCurrentCity(event) {
   event.preventDefault();
-  currentCity.innerHTML = searchBox.value;
-  getTemperatureByCityName(searchBox.value);
-  searchBox.value = "";
+  if(getTemperatureByCityName(searchBox.value)){
+    currentCity.innerHTML = searchBox.value;
+    searchBox.value = "";
+  }
 }
 
 function getTemperatureByCityName(cityName) {
@@ -50,9 +54,16 @@ function getTemperatureByCityGeo(lat, lon) {
 }
 
 function updateWeather(response) {
+ if(response){
+  responseObj = response
   currentTemperature.innerHTML = Math.round(response.data.main.temp);
+  celiciousTemperature = currentTemperature.innerHTML
   weatherDescription.innerHTML = response.data.weather[0].description;
   currentCity.innerHTML = response.data.name;
+  currentIcon.setAttribute('src', `http://openweathermap.org/img/wn/${responseObj.data.weather[0].icon}@2x.png`)
+  return true
+  }
+  return false
 }
 
 function setTemperature(event) {
@@ -66,6 +77,19 @@ function setTemperature(event) {
   currentTemperature.innerHTML = temp;
 }
 
+function displayFahrenheit(event){
+  event.preventDefault()
+  let temp = Math.round((currentTemperature.innerHTML * 9 ) / 5 + 32)
+  currentTemperature.innerHTML = temp;
+}
+
+function displayFahrenheit(event){
+  event.preventDefault()
+  let temp = Math.round((celiciousTemperature * 9 ) / 5 + 32)
+  currentTemperature.innerHTML = temp;
+}
+
+
 function handlePosition(position) {
   getTemperatureByCityGeo(position.coords.latitude, position.coords.longitude);
 }
@@ -76,7 +100,9 @@ function getCurrentLocation(event) {
 }
 
 celicious.addEventListener("click", setTemperature);
-fahrenheit.addEventListener("click", setTemperature);
+fahrenheit.addEventListener("click", displayFahrenheit);
 
 form.addEventListener("submit", changeCurrentCity);
 currentLocation.addEventListener("click", getCurrentLocation);
+
+getTemperatureByCityName('london')
