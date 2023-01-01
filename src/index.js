@@ -66,20 +66,10 @@ function updateWeather(response) {
   return false
 }
 
-function setTemperature(event) {
-  event.preventDefault();
-  let temp = "19";
 
-  if (event.target.id !== "celicious") {
-    temp = "66";
-  }
-
-  currentTemperature.innerHTML = temp;
-}
-
-function displayFahrenheit(event){
+function displayCelicious(event){
   event.preventDefault()
-  let temp = Math.round((currentTemperature.innerHTML * 9 ) / 5 + 32)
+  let temp = Math.round(celiciousTemperature)
   currentTemperature.innerHTML = temp;
 }
 
@@ -99,7 +89,7 @@ function getCurrentLocation(event) {
   navigator.geolocation.getCurrentPosition(handlePosition);
 }
 
-celicious.addEventListener("click", setTemperature);
+celicious.addEventListener("click", displayCelicious);
 fahrenheit.addEventListener("click", displayFahrenheit);
 
 form.addEventListener("submit", changeCurrentCity);
