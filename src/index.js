@@ -5,6 +5,7 @@ let currentTemperature = document.querySelector("#current-temperature");
 let weatherDescription = document.querySelector("#temp-description");
 let currentLocation = document.querySelector("#current-location");
 let currentIcon = document.querySelector('#current-icon')
+let windSpeed = document.querySelector('#wind-speed')
 let responseObj
 let celiciousTemperature
 
@@ -60,7 +61,9 @@ function updateWeather(response) {
   celiciousTemperature = currentTemperature.innerHTML
   weatherDescription.innerHTML = response.data.weather[0].description;
   currentCity.innerHTML = response.data.name;
-  currentIcon.setAttribute('src', `http://openweathermap.org/img/wn/${responseObj.data.weather[0].icon}@2x.png`)
+  currentIcon.setAttribute('src', `http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`)
+  windSpeed.innerHTML = Math.round(response.data.wind.speed)
+  console.log(response.data.wind.speed);
   return true
   }
   return false
